@@ -9,6 +9,8 @@ frequency of each letter, then scores each word accordingly.
 It prints the same word list along with the score of each word.''')
 
 parser.add_argument("file", help='word list, one word per line. For example, /usr/share/dict/words')
+parser.add_argument("-f", '--frequencies', help="print letter frequencies and exit",
+    action='store_true')
 
 args = parser.parse_args()
 
@@ -32,7 +34,8 @@ with open(args.file) as f:
     words = [word.strip() for word in f]
     freq = frequencies(words)
     
-# print frequency table
-for ci in range(ord('A'), ord('Z')):
-    c = chr(ci)
-    print(f"{c}: {freq[c]}")
+
+if (args.frequencies):
+    for ci in range(ord('A'), ord('Z')):
+        c = chr(ci)
+        print(f"{c}: {freq[c]}")
