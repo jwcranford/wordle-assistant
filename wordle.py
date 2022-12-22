@@ -35,10 +35,18 @@ def next_guess():
             return zip(g, r)
 
 def process_guess(words, guess):
+    i = 0
     for (g,r) in guess:
-        # If black, Remove all words containing g
-        if r == '.':
-            words = [w for w in words if not g in w]
+        match r:
+            # If black, Remove all words containing g
+            case '.':
+                words = [w for w in words if not g in w]
+            # If yellow
+            #    * Remove all words without ltr
+            #    * Remove all words with ltr in current position
+            case 'y':
+                words = [w for w in words if g in w and w[i] != g]
+        i = i + 1
     return words
 
 if __name__ == '__main__':
