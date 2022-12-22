@@ -42,10 +42,13 @@ def process_guess(words, guess):
             case '.':
                 words = [w for w in words if not g in w]
             # If yellow
-            #    * Remove all words without ltr
-            #    * Remove all words with ltr in current position
+            #    * Remove all words without g
+            #    * Remove all words with g in current position
             case 'y':
                 words = [w for w in words if g in w and w[i] != g]
+            # If green, Remove all words without g in current position
+            case 'G':
+                  words = [w for w in words if w[i] == g]
         i = i + 1
     return words
 
