@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 
 import sys
+import argparse
 
-def usage():
-    print(f"{sys.argv[0]} processes the given word list file, calculates the ")
-    print('frequency of each letter, then scores each word accordingly.')
-    print('It prints the same word list along with the score of each word.')
-    print()
-    print(f"Usage: {sys.argv[0]} word-list")
+parser = argparse.ArgumentParser(description='''
+wordle.py processes the given word list file, calculates the
+frequency of each letter, then scores each word accordingly.
+It prints the same word list along with the score of each word.''')
 
-if (len(sys.argv) < 2):
-    usage()
-    sys.exit(1)
+parser.add_argument("file", help='word list, one word per line. For example, /usr/share/dict/words')
+
+args = parser.parse_args()
 
 def frequencies(words):
     freq = {}
@@ -23,7 +22,13 @@ def frequencies(words):
                 freq[ltr] = freq[ltr] + 1
     return freq
 
-with open(sys.argv[1]) as f:
+def score(freq, word):
+    sum = 0
+    for c in word:
+        sum += freq.get(c, 0)
+    return sum
+
+with open(args.file) as f:
     words = [word.strip() for word in f]
     freq = frequencies(words)
     
