@@ -38,6 +38,11 @@ def score(freq, word):
         sum += freq.get(c, 0)
     return sum
 
+def print_top(scores):
+    print(f"{len(scores)} words left")
+    for (w,s) in scores[0:args.top]:
+        print(f"{w}: {s}")
+
 with open(args.file) as f:
     words = [word.strip() for word in f]
     freq = frequencies(words)
@@ -53,8 +58,6 @@ elif (args.print_scores):
     for (w, s) in scores:
         print(f"{w}: {s}")
 else:
-    print(f"{len(scores)} words left")
-    for (w,s) in scores[0:args.top]:
-        print(f"{w}: {s}")
+    print_top(scores)
 
 
