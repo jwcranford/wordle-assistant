@@ -9,12 +9,16 @@ frequency of each letter, then scores each word accordingly.
 It prints the same word list along with the score of each word.''')
 
 parser.add_argument("file", help='word list, one word per line. For example, /usr/share/dict/words')
-parser.add_argument("-f", '--frequencies',
+parser.add_argument("-f", '--print_frequencies',
     help="print letter frequencies and exit",
     action='store_true')
-parser.add_argument('-s', '--scores', 
+parser.add_argument('-s', '--print_scores', 
     help='score the words in the file and print them, with highest scores first',
     action='store_true')
+parser.add_argument('-t', '--top',
+    help='number of top scoring words to print',
+    default=10,
+    type=int)
 
 args = parser.parse_args()
 
@@ -41,11 +45,16 @@ with open(args.file) as f:
     scores.sort(key=lambda s: s[1],
         reverse=True)
     
-if (args.frequencies):
+if (args.print_frequencies):
     for ci in range(ord('A'), ord('Z')):
         c = chr(ci)
         print(f"{c}: {freq[c]}")
-elif (args.scores):
+elif (args.print_scores):
     for (w, s) in scores:
         print(f"{w}: {s}")
+else:
+    print(f"{len(scores)} words left")
+    for (w,s) in scores[0:args.top]:
+        print(f"{w}: {s}")
+
 
