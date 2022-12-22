@@ -13,16 +13,20 @@ if (len(sys.argv) < 2):
     usage()
     sys.exit(1)
 
-freq = {}
-with open(sys.argv[1]) as f:
-    words = [word.strip() for word in f]
+def frequencies(words):
+    freq = {}
     for word in words:
         for ltr in set(word):
             if freq.get(ltr) == None:
                 freq[ltr] = 1
             else:
                 freq[ltr] = freq[ltr] + 1
+    return freq
 
+with open(sys.argv[1]) as f:
+    words = [word.strip() for word in f]
+    freq = frequencies(words)
+    
 # print frequency table
 for ci in range(ord('A'), ord('Z')):
     c = chr(ci)
