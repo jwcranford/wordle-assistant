@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
 import argparse
 
 def frequencies(words):
@@ -48,7 +47,7 @@ def process_guess(words, guess):
                 words = [w for w in words if g in w and w[i] != g]
             # If green, Remove all words without g in current position
             case 'G':
-                  words = [w for w in words if w[i] == g]
+                words = [w for w in words if w[i] == g]
         i = i + 1
     return words
 
@@ -67,7 +66,7 @@ if __name__ == '__main__':
         action='store_true')
     parser.add_argument('-t', '--top',
         help='number of top scoring words to print',
-        default=10,
+        default=30,
         type=int)
 
     args = parser.parse_args()
