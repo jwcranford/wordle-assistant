@@ -1,7 +1,6 @@
-# wordle-companion
+# wordle-assistant
 
-Companion program to wordle. wordle-companion is designed to be run in 
-conjunction with a wordle game. At each step in the game, wordle-companion 
+Helps you play Wordle. At each step in the game, wordle-assistant
 recomputes the next best guess, based on an internal dictionary of words 
 and the relative frequencies of letters not yet guessed in the wordle 
 game.
@@ -24,7 +23,7 @@ contains less esoteric words, but your mileage may vary.
 
 ## Dependencies
 
-wordle-companion relies on a feature of Python 3.10, so Python 3.10+ must 
+wordle-assistant relies on a feature of Python 3.10, so Python 3.10+ must 
 be installed.
 
 ## Usage
